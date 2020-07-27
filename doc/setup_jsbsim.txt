@@ -1,0 +1,22 @@
+## JSBSim Setup
+-----------------------------------------------------
+## OS: Windows
+## Compiler: Visual Studios 16
+
+## Download Instructions - GIT
+	X.) Install GIT
+	1.) Using GIT Bash clone the JSBSim git repository
+		- cmd: git clone https://github.com/JSBSim-Team/jsbsim.git
+	
+## Build Instructions
+	1.) Use visual studios to open JSBSim.sln (first level of repository)
+	2.) Find the solution explorer
+	3.) Right click on the aeromatic subproject
+	4.) Select "Retarget Projects"
+		- This will set the code to compile using the existing code libraries and windows SDK
+	5.) Repeat step 4 with JSBSim and prep_plot subprojets
+	6.) Select Debug or Release
+	7.) Build the JSBSim Code
+	8.) All executables and generated files will be in the Debug/Release folder
+------------------------------------------------------
+	
