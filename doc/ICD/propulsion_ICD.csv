@@ -1,0 +1,17 @@
+﻿Propulsion ICD,,,,
+Input,Units,Value,Description,
+milthrust,lbf,,max static thrust without afterburner at sea level,
+maxthrust,lbf,,max static thrust with afterburner at sea level,
+bypassratio,N/A,,bypass ratio,
+TSFC,lbm/hr/lbf,,Thrust specific fuel consumption,
+IDLEN1 ,-,,idle percent rpm of fan spool  (if applicable),
+IDLEN2,-,,idle percent rpm of inner spool  (if applicable),
+MAXN1,-,,N1 at 100% throttle  (if applicable),
+MAXN2,-,,N2 at 100% throttle (if applicable),
+,,,,
+Look Up Tables,,,,
+Table,dim 1,,dim 2,dim 3
+0,idle thrust,,altitude,mach
+1,maxthrust,,altitude,mach
+2,-,,-,-
+3,-,,-,-
