@@ -169,7 +169,7 @@
 
 <!-- Propulsion -->
 <propulsion>
-    <engine file="K_70G4">
+    <engine file="ft_250">
         <location unit="IN">
             <x> 51 </x>
             <y> 0 </y>
