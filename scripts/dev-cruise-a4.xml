@@ -63,7 +63,7 @@
   </run>
 
   
-  <output name="output/dev-phase1-a4.csv" type="CSV" rate="1">
+  <output name="output/dev-cruise-a4.csv" type="CSV" rate="1">
     <property> position/h-sl-ft </property>
     <property> aero/qbar-psf </property>
     <property> attitude/phi-rad </property>
