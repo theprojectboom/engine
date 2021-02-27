@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<initialize name="reset00">
+  <!--
+    Cruising setup
+  -->
+  <vt unit="KTS">        300.0  </vt>
+  <latitude unit="DEG">   28.0  </latitude>
+  <longitude unit="DEG"> -90.0  </longitude>
+  <altitude unit="FT">  40000.0  </altitude>
+  <phi unit="DEG">         0.0 </phi>
+  <psi unit="DEG">       200.0  </psi>
+  <beta unit="DEG">        0.0 </beta>
+  <!-- <running>                0    </running> -->
+</initialize>
+
