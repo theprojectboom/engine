@@ -9,7 +9,8 @@ echo "Setting up JSBSim Evironment"
 # Envrionment Variables *******
 # Select Script and Set Run Name
 
-SCRIPT=F:/Project/engine/scripts/c172_cruise_8k.xml
+# SCRIPT=$(pwd)/jsbsim/scripts/B747_script1.xml
+SCRIPT=$(pwd)/scripts/dev-cruise-phase1.xml
 RUNNAME=script_test_1
 
 
@@ -18,9 +19,9 @@ CURDIR=$(pwd)
 
 
 # JSBSim Root Directory
-ROOT=F:/Project/jsbsim-code
+ROOT=$(pwd)/linux
 # Data Output Location
-DATADIR=F:/Project/engine/data
+DATADIR=$(pwd)/output
 DATAOUTNAME=$RUNNAME.csv
 
 OUTPUT1=data_output/velocities.xml
@@ -28,12 +29,12 @@ OUTPUT2=data_output/aerosurfaces.xml
 OUTPUT3=data_output/rates.xml
 OUTPUT4=data_output/position.xml
 
-EXEDIR=$ROOT/Debug
+EXEDIR=$ROOT/bin
 
 # Switch to executable directory, run jsbsim.exe, switch back to current directory
 cd $EXEDIR
 
-./jsbsim.exe --root=$ROOT --script=$SCRIPT
+./JSBSim --root=$ROOT --script=$SCRIPT
 
 cd $CURDIR
 #
