@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSimScript.xsl"?>
+<runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
+    name="JSBSim dev test: model cruise configuration">
+  <description>This run is testing JSBSim cruise flight with below specified model.</description>
+  <use aircraft="Boomy" initialize="reset02"/>
+  <run start="0" end="30" dt="0.00833333">
+
+    <property value="0"> simulation/notify-time-trigger </property>
+
+    <event name="Set engines running">
+      <condition> simulation/sim-time-sec le 0.1 </condition>
+      <set name="propulsion/engine[0]/set-running" value="1"/>
+      <notify/>
+    </event>
+
+    
+    <!--
+      For "do_simple_trim" (Classic trim):
+      0: Longitudinal
+      1: Full
+      2: Ground
+      3: Pullup
+      4: Custom
+      5: Turn
+      6: None
+    -->
+    
+    <event name="Trim">
+      <condition> simulation/sim-time-sec gt 10 </condition>
+      <set name="simulation/do_simple_trim" value="1"/>
+      <delay>10.0</delay>
+      <notify>
+        <property>propulsion/engine[0]/n2</property>
+        <property>propulsion/engine[0]/thrust-lbs</property>
+        <property>velocities/vc-kts</property>
+        <property>velocities/vc-fps</property>
+        <property>velocities/vt-fps</property>
+        <property>attitude/phi-rad</property>
+        <property>attitude/theta-rad</property>
+        <property>attitude/psi-rad</property>
+      </notify>
+    </event>
+
+    <event name="Repeating Notify" persistent="true">
+      <description>Output message at 5 second intervals</description>
+      <notify>
+        <property>propulsion/engine[0]/n2</property>
+        <property>propulsion/engine[0]/thrust-lbs</property>
+        <property>position/h-agl-ft</property>
+        <property>velocities/vc-kts</property>
+        <property>velocities/vc-fps</property>
+        <property>velocities/vt-fps</property>
+        <property>attitude/phi-rad</property>
+        <property>attitude/theta-rad</property>
+        <property>attitude/psi-rad</property>
+      </notify>
+      <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
+      <set name="simulation/notify-time-trigger" value="5" type="FG_DELTA"/>
+    </event>
+
+  </run>
+
+  
+  <output name="output/dev-cruise-boomy.csv" type="CSV" rate="10">
+    <property> position/h-sl-ft </property>
+    <property> aero/qbar-psf </property>
+    <property> attitude/phi-rad </property>
+    <property> velocities/vc-kts </property>
+    <property> fcs/throttle-cmd-norm </property>
+    <property> fcs/elevator-cmd-norm </property>
+    <property> fcs/pitch-trim-cmd-norm </property>
+    <property> propulsion/total-fuel-lbs </property>
+    <property> flight-path/gamma-rad </property>
+    <property> accelerations/n-pilot-z-norm </property>
+    <rates> ON </rates>
+    <velocities> ON </velocities>
+    <forces> ON </forces>
+    <moments> ON </moments>
+    <position> ON </position>
+    <fcs> ON </fcs>
+    <propulsion> ON </propulsion>
+    <aerosurfaces> ON </aerosurfaces>
+    <fcs> ON </fcs>
+    <ground_reactions> ON </ground_reactions>
+  </output>
+
+</runscript>
