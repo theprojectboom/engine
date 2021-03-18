@@ -4,10 +4,17 @@ This project exists to support the development of a physics based flight model o
 ## JSBSim
 JSBSim is a physics based c-code that models intended to simulate real flight.  The libraries inlcude jet, turbine, and prop engines, sensors, existing aircraft models, and more.
 
-## Running JSBOnly Sims
+## Running JSBOnly Sims - Linux (WSL)
+__First__, build the JSBSim binary following the [JSBSim Manual](https://jsbsim-team.github.io/jsbsim-reference-manual/mypages/quickstart-building-the-program/) for your environment.
+
+Then, copy the produced JSBSim binary to the `bin` folder
+```
+# Create bin folder within this repo
+mkdir bin
+```
+
 On WSL(Windows Subsystem for Linux) or Linux:
 ```
-cd this_repo/
 ./bin/JSBSim scripts/dev-cruise-a4.xml --root=linux
 ```
 
