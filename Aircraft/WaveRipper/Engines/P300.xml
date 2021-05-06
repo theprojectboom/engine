@@ -44,6 +44,8 @@
     Max operating altitude:       10000m/32800ft
     Fuel :                        Jet-A1 with 5% oil
     Max axial (forward) acc.:     25G
+    All data at STP +/- 3%
+    STP: Standard temperature and pressure: 15C/1013mbar
 -->
 
 <turbine_engine name="P300">
