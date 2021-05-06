@@ -214,6 +214,37 @@
 
     </axis>
 
+    <axis name="DRAG">
+      <function name="aero/force/Drag_minimum">
+        <description>Minimum drag</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <value> 0.012472 </value>
+        </product>
+      </function>
+
+      <function name="aero/force/Drag_alpha">
+        <description>Drag due to alpha</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
+            <independentVar lookup="column">velocities/mach</independentVar>
+            <tableData>
+              0.1				0.3				0.5				0.7
+              -8	0.033			0.03976340051	0.04649906181	0.05726257
+              -3	0.011			0.01166552793	0.01314749555	0.02074335332
+               2	0.012			0.0110333957	0.01241672081	0.01247228127
+               7	0.027			0.02987339012	0.03952692937	0.02060622746
+               12	0.079			0.08399357497	0.09437848307	0.058298882
+               17	0.138			0.159593753		0.1806859284	0.1216733945
+            </tableData>
+          </table>
+        </product>
+      </function>
+    </axis>
   </aerodynamics>
 
 
@@ -245,15 +276,19 @@
         </orient>
       </thruster>
     </engine>
+      
+    <tank type="FUEL" number="0">
+      <location unit="M">
+        <x>     0.900 </x>
+        <y>     0.000 </y>
+        <z>     0.000 </z>
+      </location>
+      <capacity unit="KG"> 6.00 </capacity>
+      <contents unit="KG"> 6.00 </contents>
+    </tank>
+    
   </propulsion>
 
-  <tank type="FUEL" number="0">
-     <location unit="M">
-       <x>     0.900 </x>
-       <y>     0.000 </y>
-       <z>     0.000 </z>
-     </location>
-     <capacity unit="KG"> 6.00 </capacity>
-     <contents unit="KG"> 6.00 </contents>
-  </tank>
+  <system file="fuel"/>
+
 </fdm_config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>  
+
+<system name="fuel"> 
+  <channel name="P300 fuel consumption logic">
+    <switch name="fuel/through-valve">
+      <default value="0"/>
+      <test logic="AND" value="1">
+        propulsion/tank[0]/contents-lbs GT 0
+      </test>
+      <output>propulsion/tank[0]/external-flow-rate-pps</output>
+    </switch>
+  </channel>
+</system>
