@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 
 <!--
-  File:     ft250.xml
-  Author:   AeromatiC++ v 3.3.12
+  File:     P300.xml
 
   See: http://wiki.flightgear.org/JSBSim_Engines#FGTurbine
 
@@ -20,6 +19,31 @@
     engine weight:           19.4 lbs
     engine length:           1.0 ft
     engine diameter:         0.5 ft
+
+
+  Information from JetCat:
+    Idle rpm:                     35000
+    Max rpm:                      106000
+    Thrust at idle (N):           14
+    Thrust at maxRPM (N):         300
+    EGT range (C):                480-750
+    Pressure ration:              3.55
+    Mass flow (kg/s):             0.5
+    Exhaust gas velocity (km/h):  2160
+    Exhaust gas power output(kW): 90
+    Fuel consum. at max (ml/min): 980
+    Fuel consum. at idle (ml/min):179
+    Fuel consum. idle (kg/min):   0.143
+    Fuel consum. max (kg/min):    0.784
+    SFC at max (kg/Nh):           0.157
+    Weight (g):                   2730
+    Diameter (mm):                132
+    Length (mm) incl. starter:    380.5
+
+    Max startup altitude:         2600m(@STP)
+    Max operating altitude:       10000m/32800ft
+    Fuel :                        Jet-A1 with 5% oil
+    Max axial (forward) acc.:     25G
 -->
 
 <turbine_engine name="P300">
