@@ -1,13 +1,29 @@
 <?xml version="1.0"?>  
 
+<!--
+  For P300 - from spec sheet - 05/07/2021
+    Fuel consum. idle (kg/min):   0.143
+    Fuel consum. max (kg/min):    0.784
+-->
+
 <system name="fuel"> 
   <channel name="P300 fuel consumption logic">
     <switch name="fuel/through-valve">
       <default value="0"/>
       <test logic="AND" value="1">
+        <!-- /controls/fuel/valve[0] EQ 1 -->
         propulsion/tank[0]/contents-lbs GT 0
       </test>
-      <output>propulsion/tank[0]/external-flow-rate-pps</output>
     </switch>
+
+    <pure_gain name="fuel/draw">
+      <input>fuel/through-valve</input>
+      <gain>fcs/throttle-cmd-norm[0]</gain>
+      <clipto>
+        <min>0.32</min> <!-- 0.14kg == 0.32lbs -->
+        <max>1.73</max> <!-- 0.78kg == 1.73 -->
+      </clipto>
+      <output>propulsion/tank[0]/external-flow-rate-pps</output>
+    </pure_gain>
   </channel>
 </system>
