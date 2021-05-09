@@ -17,8 +17,8 @@
     </switch>
 
     <pure_gain name="fuel/draw">
-      <input>fuel/through-valve</input>
-      <gain>fcs/throttle-cmd-norm[0]</gain>
+      <input>fcs/throttle-cmd-norm[0]</input>
+      <gain>0.02883333</gain>
       <clipto>
         <min>0.005333</min> <!-- 0.14kg == 0.32lbs; converted to pps-->
         <max>0.02883333</max> <!-- 0.78kg == 1.73 -->
