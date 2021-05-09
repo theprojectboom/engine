@@ -20,8 +20,8 @@
       <input>fuel/through-valve</input>
       <gain>fcs/throttle-cmd-norm[0]</gain>
       <clipto>
-        <min>0.32</min> <!-- 0.14kg == 0.32lbs -->
-        <max>1.73</max> <!-- 0.78kg == 1.73 -->
+        <min>0.005333</min> <!-- 0.14kg == 0.32lbs; converted to pps-->
+        <max>0.02883333</max> <!-- 0.78kg == 1.73 -->
       </clipto>
       <output>propulsion/tank[0]/external-flow-rate-pps</output>
     </pure_gain>
