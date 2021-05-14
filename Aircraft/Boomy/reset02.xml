@@ -10,6 +10,7 @@
   <phi unit="DEG">         0.0 </phi>
   <psi unit="DEG">       200.0  </psi>
   <beta unit="DEG">        0.0 </beta>
-  <!-- <running>                0    </running> -->
+  <trim>				 full </trim>
+  <running>                0    </running>
 </initialize>
 

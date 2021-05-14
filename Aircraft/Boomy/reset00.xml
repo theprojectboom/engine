@@ -12,5 +12,6 @@
   <phi unit="DEG">         0.0  </phi>
   <theta unit="DEG">       0.0  </theta>
   <psi unit="DEG">       225.0  </psi>
-  <altitude unit="IN">    44.82 </altitude>
+  <altitude unit="M">      0.5 </altitude>
+  <trim>				ground  </trim>
 </initialize>

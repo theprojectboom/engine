@@ -5,26 +5,25 @@
     name="Boomy runway test">
   <description>For testing Boomy ground reactions</description>
   <use aircraft="Boomy" initialize="reset00"/>
-  <run start="0.0" end="120" dt="0.00833333">
-    <property value="0"> simulation/notify-time-trigger </property>
+  <run start="0.0" end="90" dt="0.00833333">
 
-   <!-- <event name="On-ground trim">
+    <event name="On-ground trim">
       <description>The aircraft is trimmed on-ground.</description>
-      <condition>simulation/sim-time-sec ge 10</condition>
-      <set name="simulation/do_simple_trim" value="2"/>
+      <condition>simulation/sim-time-sec ge 0.25</condition>
+      <set name="simulation/do_simple_trim" value="2"/> <!-- on-ground trim -->
       <notify/>
-    </event> -->
+    </event>
 
     <event name="Left brake applied">
       <description>Brake testing</description>
-      <condition>simulation/sim-time-sec ge 15</condition>
+      <condition>simulation/sim-time-sec ge 5</condition>
       <set name="fcs/left-brake-cmd-norm" value="1"/>
       <notify/>
     </event>
 
     <event name="Right brake applied">
       <description>Brake testing</description>
-      <condition>simulation/sim-time-sec ge 20</condition>
+      <condition>simulation/sim-time-sec ge 8</condition>
       <set name="fcs/right-brake-cmd-norm" value="1"/>
       <set name="fcs/left-brake-cmd-norm" value="0"/>
       <notify/>
@@ -32,7 +31,7 @@
 
     <event name="Both brakes applied">
       <description>Brake testing</description>
-      <condition>simulation/sim-time-sec ge 25</condition>
+      <condition>simulation/sim-time-sec ge 10</condition>
       <set name="fcs/right-brake-cmd-norm" value="1"/>
       <set name="fcs/left-brake-cmd-norm" value="1"/>
       <notify/>
@@ -40,7 +39,7 @@
 
     <event name="Brakes released">
       <description>Brake testing</description>
-      <condition>simulation/sim-time-sec ge 30</condition>
+      <condition>simulation/sim-time-sec ge 15</condition>
       <set name="fcs/right-brake-cmd-norm" value="0"/>
       <set name="fcs/left-brake-cmd-norm" value="0"/>
       <notify/>
@@ -48,35 +47,42 @@
 
     <event name="Steer left">
       <description>Steer left</description>
-      <condition>simulation/sim-time-sec ge 30</condition>
+      <condition>simulation/sim-time-sec ge 20</condition>
       <set name="fcs/steer-cmd-norm[0]" value="-5" action="FG_RAMP" tc="1"/>
       <notify/>
     </event>
 
     <event name="Steer right">
       <description>Steer right</description>
-      <condition>simulation/sim-time-sec ge 31</condition>
+      <condition>simulation/sim-time-sec ge 21</condition>
       <set name="fcs/steer-cmd-norm[0]" value="5" action="FG_RAMP" tc="2"/>
       <notify/>
     </event>
 
     <event name="Steer straight">
       <description>Steer straight</description>
-      <condition>simulation/sim-time-sec ge 33</condition>
+      <condition>simulation/sim-time-sec ge 23</condition>
       <set name="fcs/steer-cmd-norm[0]" value="0" action="FG_RAMP" tc="1"/>
+      <notify/>
+    </event>
+    
+	<event name="FLaps down">
+      <description>Flaps down to 30 degrees</description>
+      <condition>simulation/sim-time-sec ge 25</condition>
+      <set name="fcs/flap-cmd-norm" value="-30" action="FG_RAMP" tc="1"/>
       <notify/>
     </event>
 
     <event name="Start engine: Starter">
       <description>The starter for both engines is turned on.</description>
-      <condition>simulation/sim-time-sec ge 35.0</condition>
+      <condition>simulation/sim-time-sec ge 25.0</condition>
       <set name="propulsion/starter_cmd" value="1"/>
       <notify/>
     </event>
 
     <event name="Start engine: Cutoff">
       <description>Cutoff is turned off, allowing fuel to flow.</description>
-      <condition>propulsion/engine[0]/n2 ge 25.0</condition>
+      <condition>propulsion/engine[0]/n2 ge 15.0</condition>
       <set name="propulsion/cutoff_cmd" value="0"/>
       <set name="fcs/throttle-cmd-norm[0]" value="0.4"/>
       <notify>
@@ -87,10 +93,10 @@
     </event>
 
     <event name="Throttle-up">
-      <description>Move throttle to full for take-off.</description>
-      <condition>propulsion/engine[0]/n2 ge 45.0</condition>
+      <description>Move throttle to half for take-off.</description>
+      <condition>propulsion/engine[0]/n2 ge 15.0</condition>
       <delay>5.0</delay>
-      <set name="fcs/throttle-cmd-norm[0]" value="1.0"/>
+      <set name="fcs/throttle-cmd-norm[0]" value="0.5"/>
       <notify>
         <property>propulsion/engine[0]/n2</property>
         <property>propulsion/engine[0]/thrust-lbs</property>
@@ -99,8 +105,8 @@
     </event>
 
     <event name="Notify Velocity">
-      <description>Notify when velocity goes above 10 kts.</description>
-      <condition>velocities/vc-kts ge 10.0</condition>
+      <description>Notify when velocity goes above 20 kts.</description>
+      <condition>velocities/vc-kts ge 20.0</condition>
       <notify>
         <property>propulsion/engine[0]/n2</property>
         <property>propulsion/engine[0]/thrust-lbs</property>
@@ -110,7 +116,7 @@
 
     <event name="Both brakes applied at speed">
       <description>Brake testing</description>
-      <condition>velocities/vc-kts ge 10.0</condition>
+      <condition>velocities/vc-kts ge 20.0</condition>
       <delay>5.0</delay>
       <set name="fcs/right-brake-cmd-norm" value="1"/>
       <set name="fcs/left-brake-cmd-norm" value="1"/>
@@ -119,7 +125,7 @@
 
     <event name="Brakes released at speed and throttle-down">
       <description>Brake testing</description>
-      <condition>velocities/vc-kts ge 10.0</condition>
+      <condition>velocities/vc-kts ge 20.0</condition>
       <delay>10.0</delay>
       <set name="fcs/right-brake-cmd-norm" value="0"/>
       <set name="fcs/left-brake-cmd-norm" value="0"/>
@@ -144,23 +150,10 @@
       </condition>
       <notify/>
     </event>
-    
-	<event name="Repeating Notify" persistent="true">
-      <description>Output message at 0.01 second intervals</description>
-      <notify>
-        <property>position/h-agl-ft</property>
-	  	<property>accelerations/wdot-ft_sec2</property>
-      </notify>
-      <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
-      <set name="simulation/notify-time-trigger" value="2" type="FG_DELTA"/>
-    </event>
 
   </run>
 
-  <output name="output/Boomy-runway-test.csv" type="CSV" rate="100">
-    <property> position/h-agl-ft </property>
-	<property> accelerations/wdot-ft_sec2</property>
-    <rates> ON </rates>
+  <output name="output/Boomy_runway_test.csv" type="CSV" rate="1">
     <velocities> ON </velocities>
     <forces> ON </forces>
     <moments> ON </moments>

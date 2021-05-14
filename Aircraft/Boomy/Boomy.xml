@@ -70,7 +70,7 @@
    <vtailarm  unit="M" >     0.614 </vtailarm>
    <location name="AERORP" unit="M">		<!-- From M>=0.75 sheet; this is what all your coefficients should be around, JSBSim transfers them to CG as neccessary -->
      <x>     -0.04422 </x>
-     <y>      0.0030 </y>
+     <y>      0.0000 </y>
      <z>      0.0000 </z>
    </location>
    <location name="EYEPOINT" unit="M">		<!-- G-Force calculation point for pilot; ignore; might be able to remove but keep for safety unless sure -->
@@ -91,17 +91,89 @@
    <izz unit="KG*M2">      2.294 </izz>
    <emptywt unit="KG">     14.90 </emptywt>
    <location name="CG" unit="M">
-     <x>     0.798 </x>
-     <y>     -0.003 </y>
+     <x>     0.972 </x>
+     <y>     0.00 </y>
      <z>     0.00 </z>
    </location>
  </mass_balance>
+
+ <ground_reactions>
+  <contact type="BOGEY" name="NOSE_GEAR">
+   <location unit="M">
+    <x> 0.35 </x>
+    <y> 0 </y>
+    <z> -0.15 </z>
+   </location>
+   <static_friction> 0.8 </static_friction>
+   <dynamic_friction> 0.5 </dynamic_friction>
+   <rolling_friction> 0.02 </rolling_friction>
+   <spring_coeff unit="N/M"> 800 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 400 </damping_coeff>
+   <max_steer unit="DEG"> 80 </max_steer>
+   <brake_group> NOSE </brake_group>
+   <retractable>1</retractable>
+  </contact>
+  <contact type="BOGEY" name="LEFT_GEAR">
+   <location unit="M">
+    <x> 1.10 </x>
+    <y> -0.40 </y>
+    <z> -0.15 </z>
+   </location>
+   <static_friction> 0.8 </static_friction>
+   <dynamic_friction> 0.5 </dynamic_friction>
+   <rolling_friction> 0.02 </rolling_friction>
+   <spring_coeff unit="N/M"> 1400 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 200 </damping_coeff>
+   <max_steer unit="DEG"> 0.0 </max_steer>
+   <brake_group> LEFT </brake_group>
+   <retractable>1</retractable>
+  </contact>
+  <contact type="BOGEY" name="RIGHT_GEAR">
+   <location unit="M">
+    <x> 1.10 </x>
+    <y> 0.40 </y>
+    <z> -0.15 </z>
+   </location>
+   <static_friction> 0.8 </static_friction>
+   <dynamic_friction> 0.5 </dynamic_friction>
+   <rolling_friction> 0.02 </rolling_friction>
+   <spring_coeff unit="N/M"> 1400 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 200 </damping_coeff>
+   <max_steer unit="DEG"> 0.0 </max_steer>
+   <brake_group> RIGHT </brake_group>
+   <retractable>1</retractable>
+  </contact>
+  <contact type="STRUCTURE" name="LEFT_WING">
+   <location unit="M">
+    <x> 1.10 </x>
+    <y> -0.50 </y>
+    <z> 0.00 </z>
+   </location>
+   <static_friction> 0.2 </static_friction>
+   <dynamic_friction> 0.2 </dynamic_friction>
+   <rolling_friction> 0.2 </rolling_friction>
+   <spring_coeff unit="N/M"> 500 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 500 </damping_coeff>
+  </contact>
+  <contact type="STRUCTURE" name="RIGHT_WING">
+   <location unit="M">
+    <x> 1.10 </x>
+    <y> 0.50 </y>
+    <z> 0.00 </z>
+   </location>
+   <static_friction> 0.2 </static_friction>
+   <dynamic_friction> 0.2 </dynamic_friction>
+   <rolling_friction> 0.2 </rolling_friction>
+   <spring_coeff unit="N/M"> 500 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 500 </damping_coeff>
+  </contact>
+ </ground_reactions>
 
  <propulsion>
 
     <engine file="P300">
     <location unit="M">
-      <x>     0.10 </x>
+      <x>     1.25 </x>
       <y>     0.00 </y>
       <z>     0.00 </z>
     </location>
@@ -115,7 +187,7 @@
     <thruster file="direct">
      <sense> 1 </sense>
      <location unit="M">
-       <x>     1.65 </x>	<!-- Approximate value near the back -->
+       <x>     1.25 </x>	<!-- Approximate value near the back -->
        <y>     0.00 </y>
        <z>     0.00 </z>
      </location>
@@ -129,7 +201,7 @@
 
   <tank type="FUEL" number="0">	<!-- Only one fuel tank I beleive -->
      <location unit="M">		<!-- Placed at CG for now - please update -->
-       <x>     0.992 </x>
+       <x>     0.972 </x>
        <y>     0.000 </y>
        <z>     0.000 </z>
      </location>
@@ -138,82 +210,6 @@
   </tank>
 
  </propulsion>
-
- <ground_reactions>
-
-  <contact type="BOGEY" name="NOSE">
-    <location unit="IN">
-      <x>     8.62 </x>
-      <y>     0.00 </y>
-      <z>    -7.96 </z>
-    </location>
-    <static_friction>  0.80 </static_friction>
-    <dynamic_friction> 0.50 </dynamic_friction>
-    <rolling_friction> 0.02 </rolling_friction>
-    <spring_coeff  unit="LBS/FT">     13.91 </spring_coeff>
-    <damping_coeff unit="LBS/FT/SEC"> 6.95 </damping_coeff>
-    <max_steer unit="DEG"> 5.00 </max_steer>
-    <brake_group> NONE </brake_group>
-    <retractable> 1 </retractable>
-  </contact>
-
-  <contact type="BOGEY" name="LEFT_MAIN">
-    <location unit="IN">
-      <x>   104.57 </x>
-      <y>    -3.61 </y>
-      <z>    -7.96 </z>
-    </location>
-    <static_friction>  0.80 </static_friction>
-    <dynamic_friction> 0.50 </dynamic_friction>
-    <rolling_friction> 0.02 </rolling_friction>
-    <spring_coeff  unit="LBS/FT">     46.36 </spring_coeff>
-    <damping_coeff unit="LBS/FT/SEC"> 23.18 </damping_coeff>
-    <max_steer unit="DEG">0</max_steer>
-    <brake_group> LEFT </brake_group>
-    <retractable> 1 </retractable>
-  </contact>
-
-  <contact type="BOGEY" name="RIGHT_MAIN">
-    <location unit="IN">
-      <x>   104.57 </x>
-      <y>     3.61 </y>
-      <z>    -7.96 </z>
-    </location>
-    <static_friction>  0.80 </static_friction>
-    <dynamic_friction> 0.50 </dynamic_friction>
-    <rolling_friction> 0.02 </rolling_friction>
-    <spring_coeff  unit="LBS/FT">     46.36 </spring_coeff>
-    <damping_coeff unit="LBS/FT/SEC"> 23.18 </damping_coeff>
-    <max_steer unit="DEG">0</max_steer>
-    <brake_group> RIGHT </brake_group>
-    <retractable> 1 </retractable>
-  </contact>
-
-  <contact type="STRUCTURE" name="LEFT_WING">
-    <location unit="IN">
-     <x>   100.55 </x>
-     <y>   -20.04 </y>
-     <z>    -1.66 </z>
-    </location>
-   <static_friction>  1 </static_friction>
-   <dynamic_friction> 1 </dynamic_friction>
-   <spring_coeff unit="LBS/FT">      46.36 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 46.36 </damping_coeff>
-  </contact>
-
-  <contact type="STRUCTURE" name="RIGHT_WING">
-    <location unit="IN">
-     <x>   100.55 </x>
-     <y>    20.04 </y>
-     <z>    -1.66 </z>
-    </location>
-   <static_friction>  1 </static_friction>
-   <dynamic_friction> 1 </dynamic_friction>
-   <spring_coeff unit="LBS/FT">      46.36 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 46.36 </damping_coeff>
-  </contact>
-
- </ground_reactions>
 
  <system file="Aircraft control.xml"/>
  <system file="Landing Gear.xml"/>
@@ -300,10 +296,10 @@
     <!-- CD for gear (fixed and retractable) is defined below         -->
     <function name="aero/force/Drag_minimum">
        <description>Minimum drag</description>
-       <product>
+        <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
-          <value> 2.4427 </value>
+          <value> 0.012472 </value>
        </product>
     </function>
 

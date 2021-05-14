@@ -5,7 +5,7 @@
     name="Boomy ground trim test">
   <description>For testing Boomy ground reactions</description>
   <use aircraft="Boomy" initialize="reset00"/>
-  <run start="0.0" end="40" dt="0.00833333">
+  <run start="0.0" end="20" dt="0.00833333">
     <property value="0"> simulation/notify-time-trigger </property>
 
    <!-- <event name="On-ground trim">
@@ -27,7 +27,7 @@
 
   </run>
 
-  <output name="output/Boomy-groundtrim-test.csv" type="CSV" rate="100">
+  <output name="output/Boomy_groundtrim_test.csv" type="CSV" rate="10">
     <property> position/h-agl-ft </property>
 	<property> accelerations/wdot-ft_sec2</property>
     <velocities> ON </velocities>
