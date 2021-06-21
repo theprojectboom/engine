@@ -171,7 +171,7 @@
 
  <propulsion>
 
-    <engine file="P300">
+    <engine file="p300">
     <location unit="M">
       <x>     1.25 </x>
       <y>     0.00 </y>
@@ -211,13 +211,81 @@
 
  </propulsion>
 
- <system file="Aircraft control.xml"/>
- <system file="Landing Gear.xml"/>
- <system file="Flaps.xml"/>
+ <ground_reactions>
 
- <flight_control name="FCS: Boomy">
+  <contact type="BOGEY" name="NOSE">
+    <location unit="IN">
+      <x>     8.62 </x>
+      <y>     0.00 </y>
+      <z>    -7.96 </z>
+    </location>
+    <static_friction>  0.80 </static_friction>
+    <dynamic_friction> 0.50 </dynamic_friction>
+    <rolling_friction> 0.02 </rolling_friction>
+    <spring_coeff  unit="LBS/FT">     13.91 </spring_coeff>
+    <damping_coeff unit="LBS/FT/SEC"> 6.95 </damping_coeff>
+    <max_steer unit="DEG"> 5.00 </max_steer>
+    <brake_group> NONE </brake_group>
+    <retractable> 1 </retractable>
+  </contact>
 
- </flight_control>
+  <contact type="BOGEY" name="LEFT_MAIN">
+    <location unit="IN">
+      <x>   104.57 </x>
+      <y>    -3.61 </y>
+      <z>    -7.96 </z>
+    </location>
+    <static_friction>  0.80 </static_friction>
+    <dynamic_friction> 0.50 </dynamic_friction>
+    <rolling_friction> 0.02 </rolling_friction>
+    <spring_coeff  unit="LBS/FT">     46.36 </spring_coeff>
+    <damping_coeff unit="LBS/FT/SEC"> 23.18 </damping_coeff>
+    <max_steer unit="DEG">0</max_steer>
+    <brake_group> LEFT </brake_group>
+    <retractable> 1 </retractable>
+  </contact>
+
+  <contact type="BOGEY" name="RIGHT_MAIN">
+    <location unit="IN">
+      <x>   104.57 </x>
+      <y>     3.61 </y>
+      <z>    -7.96 </z>
+    </location>
+    <static_friction>  0.80 </static_friction>
+    <dynamic_friction> 0.50 </dynamic_friction>
+    <rolling_friction> 0.02 </rolling_friction>
+    <spring_coeff  unit="LBS/FT">     46.36 </spring_coeff>
+    <damping_coeff unit="LBS/FT/SEC"> 23.18 </damping_coeff>
+    <max_steer unit="DEG">0</max_steer>
+    <brake_group> RIGHT </brake_group>
+    <retractable> 1 </retractable>
+  </contact>
+
+  <contact type="STRUCTURE" name="LEFT_WING">
+    <location unit="IN">
+     <x>   100.55 </x>
+     <y>   -20.04 </y>
+     <z>    -1.66 </z>
+    </location>
+   <static_friction>  1 </static_friction>
+   <dynamic_friction> 1 </dynamic_friction>
+   <spring_coeff unit="LBS/FT">      46.36 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 46.36 </damping_coeff>
+  </contact>
+
+  <contact type="STRUCTURE" name="RIGHT_WING">
+    <location unit="IN">
+     <x>   100.55 </x>
+     <y>    20.04 </y>
+     <z>    -1.66 </z>
+    </location>
+   <static_friction>  1 </static_friction>
+   <dynamic_friction> 1 </dynamic_friction>
+   <spring_coeff unit="LBS/FT">      46.36 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 46.36 </damping_coeff>
+  </contact>
+
+ </ground_reactions>
 
  <aerodynamics>
 
@@ -530,7 +598,7 @@
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/beta-rad</property>
-           <property>fcs/gear-no-wow</property>
+           <!-- <property>fcs/gear-no-wow</property> -->
            <table>
              <independentVar lookup="row">aero/alpha-rad</independentVar>
              <independentVar lookup="column">aero/Re</independentVar>
@@ -615,7 +683,7 @@
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/alpha-rad</property>
-           <property>fcs/gear-no-wow</property>
+           <!-- <property>fcs/gear-no-wow</property> -->
            <table>
              <independentVar lookup="row">aero/beta-rad</independentVar>
              <independentVar lookup="column">aero/Re</independentVar>

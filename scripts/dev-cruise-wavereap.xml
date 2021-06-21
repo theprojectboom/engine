@@ -5,16 +5,19 @@
     name="JSBSim dev test: model cruise configuration">
   <description>This run is testing JSBSim cruise flight with below specified model.</description>
   <use aircraft="WaveRipper" initialize="reset02"/>
-  <run start="0" end="50" dt="0.00833333">
+  <run start="0" end="500" dt="0.00833333">
 
     <property value="0"> simulation/notify-time-trigger </property>
 
     <event name="Set engines running">
       <condition> simulation/sim-time-sec le 0.1 </condition>
       <set name="propulsion/set-running" value="-1"/>
+      <set name="propulsion/cutoff_cmd" value="0"/>
+      <!-- <set name="fcs/throttle-cmd-norm[0]" value="1"/> -->
+      <set name="fcs/throttle-cmd-norm[0]" value="0.6" action="FG_RAMP" tc ="2"/>
       <notify/>
     </event>
-    
+
     <!--
       For "do_simple_trim" (Classic trim):
       0: Longitudinal
@@ -27,10 +30,12 @@
     -->
     
     <event name="Trim">
-      <condition> simulation/sim-time-sec gt 10 </condition>
-      <set name="simulation/do_simple_trim" value="1"/>
+      <condition> simulation/sim-time-sec gt 0.1 </condition>
+      <!-- <set name="fcs/throttle-cmd-norm[0]" value="1"/> -->
+      <set name="simulation/do_simple_trim" value="6"/>
       <notify>
         <property>propulsion/engine/n2</property>
+        <property> fcs/throttle-cmd-norm </property>
         <property>velocities/vc-kts</property>
         <property>velocities/vc-fps</property>
         <property>velocities/vt-fps</property>
@@ -43,7 +48,9 @@
     <event name="Repeating Notify" persistent="true">
       <description>Output message at 5 second intervals</description>
       <notify>
-        <property>propulsion/engine[0]/n2</property>
+        <property>propulsion/engine/n2</property>
+        <property>propulsion/engine/thrust-lbs</property>
+        <property> fcs/throttle-cmd-norm </property>
         <property>position/h-agl-ft</property>
         <property>velocities/vc-kts</property>
         <property>velocities/vc-fps</property>
@@ -71,6 +78,7 @@
     <property> propulsion/total-fuel-lbs </property>
     <property> flight-path/gamma-rad </property>
     <property> accelerations/n-pilot-z-norm </property>
+    <property> propulsion/tank[0]/external-flow-rate-pps </property>
     <rates> ON </rates>
     <velocities> ON </velocities>
     <forces> ON </forces>

@@ -15,6 +15,28 @@
       <notify/>
     </event>
 
+    <event name="starter">
+      <notify/>
+      <condition>
+        simulation/sim-time-sec >= 0.25
+      </condition>
+      <set name="propulsion/starter_cmd" value="1"/>
+    </event>
+    <event>
+      <notify/>
+      <condition>
+        propulsion/engine[0]/n2 >= 15
+      </condition>
+      <set name="propulsion/cutoff_cmd" value="0"/>
+      <set name="fcs/throttle-cmd-norm[0]" value="0.5" action="FG_RAMP" tc ="2"/>
+    </event>
+    <event>
+      <notify/>
+      <condition>
+        propulsion/engine[0]/n2 >= 50
+      </condition>
+      <set name="fcs/throttle-cmd-norm[0]" value="1.0" action="FG_RAMP" tc ="2"/>
+    </event>
     
     <!--
       For "do_simple_trim" (Classic trim):
@@ -63,7 +85,7 @@
   </run>
 
   
-  <output name="output/dev-cruise-boomy.csv" type="CSV" rate="10">
+  <output name="output/dev-cruise-boomy.csv" type="CSV" rate="120">
     <property> position/h-sl-ft </property>
     <property> aero/qbar-psf </property>
     <property> attitude/phi-rad </property>
@@ -81,7 +103,7 @@
     <position> ON </position>
     <fcs> ON </fcs>
     <propulsion> ON </propulsion>
-    <aerosurfaces> ON </aerosurfaces>
+    <aerosurfaces> OFF </aerosurfaces>
     <fcs> ON </fcs>
     <ground_reactions> ON </ground_reactions>
   </output>

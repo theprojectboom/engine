@@ -18,10 +18,10 @@
     <wingspan  unit="M" >     1.018 </wingspan>
     <wing_incidence unit="DEG"> 0.00 </wing_incidence>
     <chord     unit="M" >     0.416 </chord>
-    <!-- <htailarea unit="M2">     0.0464 </htailarea> -->
-    <!-- <htailarm  unit="M" >     0.21754 </htailarm> -->
-    <!-- <vtailarea  unit="M2">    0.0108 </vtailarea> -->
-    <!-- <vtailarm  unit="M" >     0.614 </vtailarm> -->
+    <htailarea unit="M2">     0.0464 </htailarea>
+    <htailarm  unit="M" >     0.21754 </htailarm>
+    <vtailarea  unit="M2">    0.0108 </vtailarea>
+    <vtailarm  unit="M" >     0.614 </vtailarm>
     <location name="AERORP" unit="M">
       <x>      0.972 </x>
       <y>      0.00 </y>
@@ -170,26 +170,26 @@
       </function>
 
       <function name="aero/force/Lift_pitch_rate">
-          <description>Lift due to pitch rate</description>
-          <product>
-            <property>aero/qbar-psf</property>
-            <property>metrics/Sw-sqft</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-            <value> 5.2089 </value>
-          </product>
-        </function>
+        <description>Lift due to pitch rate</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>velocities/q-aero-rad_sec</property>
+          <property>aero/ci2vel</property>
+          <value> 5.2089 </value>
+        </product>
+      </function>
 
-        <function name="aero/force/Lift_alpha_rate">
-          <description>Lift due to alpha rate</description>
-          <product>
-            <property>aero/qbar-psf</property>
-            <property>metrics/Sw-sqft</property>
-            <property>aero/alphadot-rad_sec</property>
-            <property>aero/ci2vel</property>
-            <value> 2.3823 </value>
-          </product>
-        </function>
+      <function name="aero/force/Lift_alpha_rate">
+        <description>Lift due to alpha rate</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>aero/alphadot-rad_sec</property>
+          <property>aero/ci2vel</property>
+          <value> 2.3823 </value>
+        </product>
+      </function>
 
       <function name="aero/force/Lift_elevator">
         <description>Lift due to Elevator Deflection</description>

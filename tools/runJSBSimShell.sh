@@ -10,7 +10,7 @@ echo "Setting up JSBSim Evironment"
 # Select Script and Set Run Name
 
 # SCRIPT=$(pwd)/jsbsim/scripts/B747_script1.xml
-SCRIPT=$(pwd)/scripts/dev-cruise-phase1.xml
+SCRIPT=$(pwd)/scripts/dev-cruise-boomy.xml
 RUNNAME=script_test_1
 
 
@@ -34,7 +34,8 @@ EXEDIR=$ROOT/bin
 # Switch to executable directory, run jsbsim.exe, switch back to current directory
 cd $EXEDIR
 
-./JSBSim --root=$ROOT --script=$SCRIPT
+# ./JSBSim --root=$ROOT --script=$SCRIPT
+./JSBSim-debug --root=$ROOT --script=$SCRIPT
 
 cd $CURDIR
 #

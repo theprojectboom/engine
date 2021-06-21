@@ -369,7 +369,7 @@
    </kinematic>
 
   </channel>
-
+<!-- 
   <channel name="Speedbrake">
    <kinematic name="Speedbrake Control">
      <input>fcs/speedbrake-cmd-norm</input>
@@ -386,7 +386,7 @@
      <output>fcs/speedbrake-pos-norm</output>
    </kinematic>
 
-  </channel>
+  </channel> -->
 
  </flight_control>
 
