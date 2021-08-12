@@ -2,9 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSimScript.xsl"?>
 <runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
-    name="WaveRipper runway test">
-  <description>For testing WaveRipper ground reactions</description>
-  <use aircraft="WaveRipper" initialize="reset00"/>
+    name="Boomy runway test">
+  <description>For testing Boomy ground reactions</description>
+  <use aircraft="Boomy" initialize="reset00"/>
   <run start="0.0" end="90" dt="0.00833333">
 
     <event name="On-ground trim">
@@ -153,7 +153,7 @@
 
   </run>
 
-  <output name="output/wavereap_runway_test.csv" type="CSV" rate="1">
+  <output name="output/Boomy_runway_test.csv" type="CSV" rate="1">
     <velocities> ON </velocities>
     <forces> ON </forces>
     <moments> ON </moments>
