@@ -40,15 +40,17 @@
   </metrics>
 
   <mass_balance>
-    <ixx unit="KG*M2">      0.026 </ixx>
-    <iyy unit="KG*M2">      0.893 </iyy>
-    <izz unit="KG*M2">      0.908 </izz>
-    <emptywt unit="KG">     8.377 </emptywt>
+    <emptywt unit="KG">     12.285 </emptywt>
     <location name="CG" unit="M">
-      <x>     0.972 </x>
+      <x>     1.05 </x>
       <y>     0.00 </y>
       <z>     0.00 </z>
     </location>
+    <!-- Outdated Moments -->
+    <ixx unit="KG*M2">      0.015 </ixx> 
+    <iyy unit="KG*M2">      0.893 </iyy>
+    <izz unit="KG*M2">      0.908 </izz>
+    <!--  -->
   </mass_balance>
 
   <ground_reactions>
@@ -611,7 +613,7 @@
   <propulsion>
     <engine file="P300">
       <location unit="M">
-        <x>     1.20 </x>
+        <x>     1.35 </x>
         <y>     0.00 </y>
         <z>     0.00 </z>
       </location>
@@ -623,9 +625,8 @@
       <feed> 0 </feed>
 
       <thruster file="direct">
-        <sense> 1 </sense>
         <location unit="M">
-          <x>     1.20 </x>
+          <x>     1.72 </x>
           <y>     0.00 </y>
           <z>     0.00 </z>
         </location>
@@ -637,7 +638,7 @@
       </thruster>
     </engine>
       
-    <tank type="FUEL" number="0">
+    <tank type="FUEL">
       <location unit="M">
         <x>     0.900 </x>
         <y>     0.000 </y>
@@ -645,6 +646,7 @@
       </location>
       <capacity unit="KG"> 6.00 </capacity>
       <contents unit="KG"> 6.00 </contents>
+      <density unit="KG/L"> 0.809 </density>
     </tank>
     
   </propulsion>
