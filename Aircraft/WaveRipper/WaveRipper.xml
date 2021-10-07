@@ -46,7 +46,7 @@
       <y>     0.00 </y>
       <z>     0.00 </z>
     </location>
-    <!-- Outdated Moments -->
+    <!-- Outdated Moments; (?) are there new moments available? -->
     <ixx unit="KG*M2">      0.015 </ixx> 
     <iyy unit="KG*M2">      0.893 </iyy>
     <izz unit="KG*M2">      0.908 </izz>
@@ -147,6 +147,196 @@
   </ground_reactions>
 
   <aerodynamics>
+    <!-- Using Initial Stability and Control MathCAD by Skyler Jacob, 01/31/2021 Version -->
+    <!-- Note, the values are static. This will change as we get detailed data from CFD runs. -->
+    <axis name="LIFT">
+      <function name="aero/coefficient/CLalpha">
+      <description>Lift_due_to_alpha</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property> -->
+          <value>4.846</value>
+        </product>
+      </function>
+      <!-- <function name="aero/coefficient/CLde">
+        <description>Lift_due_to_Elevator_Deflection</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>fcs/elevator-pos-rad</property>
+          <value>0.0</value>
+        </product>
+      </function> -->
+    </axis>
+
+    <axis name="DRAG">
+      <function name="aero/coefficient/CD0">
+          <description>Drag_at_zero_lift</description>
+          <product>
+              <!-- <property>aero/qbar-psf</property>
+              <property>metrics/Sw-sqft</property> -->
+              <value>0.012472</value>
+          </product>
+      </function>
+    </axis>
+
+    <axis name="SIDE">
+      <function name="aero/coefficient/CYb">
+        <description>Side_force_due_to_beta</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>aero/beta-rad</property> -->
+          <value>-0.972</value>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="ROLL">
+      <function name="aero/coefficient/Clb">
+        <description>Roll_moment_due_to_beta</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/beta-rad</property> -->
+          <value>0.0</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Clp">
+        <description>Roll_moment_due_to_roll_rate</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/p-aero-rad_sec</property> -->
+          <value>-0.477</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Clr">
+        <description>Roll_moment_due_to_yaw_rate</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/r-aero-rad_sec</property> -->
+          <value>0.225</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Clda">
+        <description>Roll_moment_due_to_aileron</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>fcs/left-aileron-pos-rad</property> -->
+          <value>0.585</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Cldr">
+        <description>Roll_moment_due_to_rudder</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>fcs/rudder-pos-rad</property> -->
+          <value>0.1</value>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="PITCH">
+      <function name="aero/coefficient/Cmalpha">
+        <description>Pitch_moment_due_to_alpha</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <property>aero/alpha-rad</property> -->
+          <value>-0.385</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Cmde">
+        <description>Pitch_moment_due_to_elevator</description>
+        <!-- <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <property>fcs/elevator-pos-rad</property>
+        </product> -->
+        <value>0.539</value>
+      </function>
+      <function name="aero/coefficient/Cmq">
+        <description>Pitch_moment_due_to_pitch_rate</description>
+        <!-- <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <property>aero/ci2vel</property>
+          <property>velocities/q-aero-rad_sec</property>
+          <value>-18</value>
+        </product> -->
+        <value>-3.928</value>
+      </function>
+      <function name="aero/coefficient/Cmadot">
+        <description>Pitch_moment_due_to_alpha_rate</description>
+        <!-- <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <property>aero/ci2vel</property>
+          <property>aero/alphadot-rad_sec</property>
+          <value>-9</value>
+        </product> -->
+        <value>-1.796</value>
+      </function>
+    </axis>
+
+    <axis name="YAW">
+      <function name="aero/coefficient/Cnb">
+        <description>Yaw_moment_due_to_beta</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/beta-rad</property> -->
+          <value>1.42</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Cnr">
+        <description>Yaw_moment_due_to_yaw_rate</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/r-aero-rad_sec</property> -->
+          <value>-1.73</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Cndr">
+        <description>Yaw_moment_due_to_rudder</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>fcs/rudder-pos-rad</property> -->
+          <value>-0.861</value>
+        </product>
+      </function>
+      <function name="aero/coefficient/Cnda">
+        <description>Adverse_yaw</description>
+        <product>
+          <!-- <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>fcs/left-aileron-pos-rad</property> -->
+          <value>-0.016</value>
+        </product>
+      </function>
+    </axis>
   </aerodynamics>
 
   <propulsion>
