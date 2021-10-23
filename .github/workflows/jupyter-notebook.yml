@@ -1,0 +1,24 @@
+name: jupyter-notebook
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  jupyter-notebook:
+    name: Run all notebooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{env.pythonLocation}}
+          key: ${{env.pythonLocation}}-${{hashFiles('scripts/setup.py')}}
+
+      - run: pip install -r scripts/requirements.txt
+      - run: PYTHONPATH=$PWD jupyter nbconvert --to notebook --execute --stdout scripts/*.ipynb 
