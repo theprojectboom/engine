@@ -98,12 +98,13 @@ def trim(aircraft, ic, design_vector, x0, verbose,
     constraints = []
     if eq_constraints is None:
         eq_constraints = []
-    for con in eq_constraints:
-        constraints.append({
-            'type': 'eq',
-            'fun': eval_fdm_func,
-            'args': (fdm, ic, con)
-        })
+    else:
+        for con in eq_constraints:
+            constraints.append({
+                'type': 'eq',
+                'fun': eval_fdm_func,
+                'args': (fdm, ic, con)
+            })
     
     # solve
     res = scipy.optimize.minimize(
