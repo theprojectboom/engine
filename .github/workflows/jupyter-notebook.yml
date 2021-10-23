@@ -4,13 +4,14 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   jupyter-notebook:
     name: Run all notebooks
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-python@v1
         with:
           python-version: 3.7
@@ -18,7 +19,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{env.pythonLocation}}
-          key: ${{env.pythonLocation}}-${{hashFiles('scripts/setup.py')}}
+          key: ${{env.pythonLocation}}-${{hashFiles('scripts/requirements.txt')}}
 
       - run: pip install -r scripts/requirements.txt
-      - run: PYTHONPATH=$PWD jupyter nbconvert --to notebook --execute --stdout scripts/*.ipynb 
+      - run: PYTHONPATH=$PWD jupyter nbconvert --to notebook --execute --stdout scripts/*.ipynb
