@@ -12,6 +12,8 @@ import numpy as np
 import pandas as pd
 import control
 
+root = Path(__file__).parent.parent.resolve()
+
 class Logger:
     
     def __init__(self, topics=None):
@@ -44,11 +46,11 @@ def set_location_purdue_airport(fdm):
 
 def trim(aircraft, ic, design_vector, x0, verbose,
          cost=None, eq_constraints=None, tol=1e-6, ftol=None, show=False, **kwargs):
-    root = Path('.').resolve()
     fdm = jsbsim.FGFDMExec(str(root)) # The path supplied to FGFDMExec is the location of the folders "aircraft", "engines" and "systems"
     if show:
         fdm.set_output_directive(str(root/ 'output' / 'flightgear.xml'))
     fdm.set_debug_level(0)    
+    fdm.set_aircraft_path('Aircraft')
     fdm.load_model(aircraft)
 
     # set location
@@ -132,10 +134,10 @@ def simulate(aircraft, op_0, op_list=None, tf=50, show=False, realtime=False, ve
     if op_list is None:
         op_list = []
         
-    root = Path('.').resolve()
     fdm = jsbsim.FGFDMExec(str(root)) # The path supplied to FGFDMExec is the location of the folders "aircraft", "engines" and "systems"
 
     # load model
+    fdm.set_aircraft_path('Aircraft')
     fdm.load_model(aircraft)
     if show:
         fdm.set_output_directive(str(root/ 'output' / 'flightgear.xml'))
@@ -208,7 +210,6 @@ def simulate(aircraft, op_0, op_list=None, tf=50, show=False, realtime=False, ve
 def linearize(aircraft, states, states_deriv, inputs, outputs, ic, dx, n_round=3):
     assert len(states_deriv) == len(states)
 
-    root = Path('.').resolve()
     fdm = jsbsim.FGFDMExec(str(root)) # The path supplied to FGFDMExec is the location of the folders "aircraft", "engines" and "systems"
     fdm.set_debug_level(0)    
     fdm.load_model(aircraft)
